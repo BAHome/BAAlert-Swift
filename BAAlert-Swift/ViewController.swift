@@ -65,7 +65,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let lableSize = BAKit_LabelSizeWithTextAndWidthAndFont(string: sectionArray[section], width: tableView.frame.size.width - 20*2, font: headerTitleLabel_font)
         
-        return lableSize.height + 20
+        return (section == sectionArray.count - 1) ? 0 : lableSize.height + 20
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
