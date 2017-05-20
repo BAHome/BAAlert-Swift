@@ -44,6 +44,9 @@ class BAAlert : UIView {
     /*! 是否开启进出场动画 默认：NO，如果 YES ，并且同步设置进出场动画枚举为默认值：1 */
     var showAnimate : Bool = false
     
+    /*! 设置动画时view不处理点击事件 */
+    var isAnimate : Bool = false
+
     /*! 进出场动画枚举 默认：1 ，并且默认开启动画开关 */
     var animatingStyle : BAAlertAnimatingStyle?
     
@@ -260,37 +263,46 @@ class BAAlert : UIView {
     
     // MARK: 进场动画
     private func showAnimationWithView(animationView : UIView) -> Void {
-        
+        isAnimate = true
         if animatingStyle == .BAAlertAnimatingStyleScale {
-            animationView.scaleAnimationShowFinishAnimation(finish: { () in
+            animationView.scaleAnimationShowFinishAnimation(finish: {[weak self] () in
+                
+                self?.isAnimate = false
                 })
         }
         else if animatingStyle == .BAAlertAnimatingStyleShake {
-            animationView.layer.shakeAnimationWithDuration(duration: 0.35, radius: 16.0, repeatCount: 1.0, finish: { () in
+            animationView.layer.shakeAnimationWithDuration(duration: 0.35, radius: 16.0, repeatCount: 1.0, finish: { [weak self] () in
+                
+                self?.isAnimate = false
             })
         }
         else if animatingStyle == .BAAlertAnimatingStyleFall {
-            animationView.layer.fallAnimationWithDuration(duration: 0.35, finish: { 
+            animationView.layer.fallAnimationWithDuration(duration: 0.35, finish: {[weak self] () in
                 
+                self?.isAnimate = false
             })
         }
     }
     
     private func dismissAnimationView(animationView : UIView) -> Void {
         
+        isAnimate = true
         if animatingStyle == .BAAlertAnimatingStyleScale {
-            animationView.scaleAnimationDismissFinishAnimation(finish: {
-                self.ba_removeSelf()
+            animationView.scaleAnimationDismissFinishAnimation(finish: {[weak self] () in
+                self?.isAnimate = false
+                self?.ba_removeSelf()
             })
         }
         else if animatingStyle == .BAAlertAnimatingStyleShake {
-            animationView.layer.floatAnimationWithDuration(duration: 0.35, finish: {
-                self.ba_removeSelf()
+            animationView.layer.floatAnimationWithDuration(duration: 0.35, finish: {[weak self] () in
+                self?.isAnimate = false
+                self?.ba_removeSelf()
             })
         }
         else if animatingStyle == .BAAlertAnimatingStyleFall {
-            animationView.layer.floatAnimationWithDuration(duration: 0.35, finish: { 
-                self.ba_removeSelf()
+            animationView.layer.floatAnimationWithDuration(duration: 0.35, finish: {[weak self] () in
+                self?.isAnimate = false
+                self?.ba_removeSelf()
             })
         }
     }
@@ -510,15 +522,17 @@ class BAAlert : UIView {
     // MARK: 触摸事件
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         NSLog("触摸了边缘隐藏View！");
-        for  touch : AnyObject in touches {
-            
-            let touchView : UIView = touch.view
-            if !self.isTouchEdgeHide {
-                NSLog("触摸了View边缘，但您未开启触摸边缘隐藏方法，请设置 isTouchEdgeHide 属性为 YES 后再使用！")
-                return
-            }
-            if touchView.isKind(of: self.classForCoder) {
-                ba_alertHidden()
+        if !isAnimate{
+            for  touch : AnyObject in touches {
+                
+                let touchView : UIView = touch.view
+                if !self.isTouchEdgeHide {
+                    NSLog("触摸了View边缘，但您未开启触摸边缘隐藏方法，请设置 isTouchEdgeHide 属性为 YES 后再使用！")
+                    return
+                }
+                if touchView.isKind(of: self.classForCoder) {
+                    ba_alertHidden()
+                }
             }
         }
     }

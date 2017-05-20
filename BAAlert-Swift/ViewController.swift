@@ -271,7 +271,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             actionSheet.dataArray = dataArray
             actionSheet.actionSheetType = .BAActionSheetTypeNormalLeft
             actionSheet.title = "支付方式"
+            
             actionSheet.isTouchEdgeHide = true
+            
+            actionSheet.showAnimate = true
 //            actionSheet.isShowCancelButton = true
             
         }) { [weak self] (actionSheet, indexPath, model) in
@@ -301,6 +304,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             actionSheet.isShowCancelButton = true
 //            actionSheet.isTouchEdgeHide = true
 //            actionSheet.title = "支付方式"
+            
+            actionSheet.showAnimate = true
+            actionSheet.animatingStyle = .BAAlertAnimatingStyleShake
             
         }) {[weak self] (actionSheet, indexPath, model) in
             

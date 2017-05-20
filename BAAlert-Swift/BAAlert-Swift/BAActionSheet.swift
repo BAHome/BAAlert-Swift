@@ -33,6 +33,9 @@ class BAActionSheet: UIView, UITableViewDelegate, UITableViewDataSource {
     /*! 是否开启进出场动画 默认：NO，如果 YES ，并且同步设置进出场动画枚举为默认值：1 */
     var showAnimate : Bool = false
     
+    /*! 设置动画时view不处理点击事件 */
+    var isAnimate : Bool = false
+    
     /*! 是否显示底部取消Button */
     var isShowCancelButton : Bool = false
     
@@ -43,7 +46,7 @@ class BAActionSheet: UIView, UITableViewDelegate, UITableViewDataSource {
     var selectIndexPath : NSIndexPath?
 
     /*! 进出场动画枚举 默认：1 ，并且默认开启动画开关 */
-    var animatingStyle : BAAlertAnimatingStyle?
+    var animatingStyle : BAAlertAnimatingStyle = .BAAlertAnimatingStyleScale
     
     /*! 进出场动画枚举 默认：1 ，并且默认开启动画开关 */
     var actionSheetType : BAActionSheetType?
@@ -86,7 +89,16 @@ class BAActionSheet: UIView, UITableViewDelegate, UITableViewDataSource {
      *  隐藏 BAActionSheet
      */
     func ba_actionSheetHidden() -> Void {
-        ba_removeSelf_actionSheet()
+        
+
+        if showAnimate {
+            dismissAnimationView(animationView: tableView)
+        }
+        else
+        {
+            ba_removeSelf_actionSheet()
+        }
+
     }
     
     override init(frame: CGRect) {
@@ -262,11 +274,10 @@ class BAActionSheet: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc private func handleDeviceOrientationRotateAction(noti : NSNotification) -> Void {
-        layoutSubviews()
+        ba_layoutSubviews()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    private func ba_layoutSubviews() {
         
         self.frame = UIScreen.main.bounds
         actionSheetWindow.frame = UIScreen.main.bounds
@@ -313,26 +324,31 @@ class BAActionSheet: UIView, UITableViewDelegate, UITableViewDataSource {
     
     private func ba_actionSheetShow() -> Void {
         actionSheetWindow.addSubview(self)
-        
+         ba_layoutSubviews()
+        if showAnimate {
+            showAnimationWithView(animationView: tableView)
+        }
     }
     
-    private func ba_removeSelf_actionSheet() -> Void  {
-        self.tableView.removeFromSuperview()
+    @objc private func ba_removeSelf_actionSheet() -> Void  {
+        tableView.removeFromSuperview()
         self.removeFromSuperview()
     }
     
     // MARK: 触摸事件
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        NSLog("触摸了边缘隐藏View！");
-        for  touch : AnyObject in touches {
-            
-            let touchView : UIView = touch.view
-            if !self.isTouchEdgeHide {
-                NSLog("触摸了View边缘，但您未开启触摸边缘隐藏方法，请设置 isTouchEdgeHide 属性为 YES 后再使用！")
-                return
-            }
-            if touchView.isKind(of: self.classForCoder) {
-                ba_removeSelf_actionSheet()
+        if !isAnimate {
+            NSLog("触摸了边缘隐藏View！");
+            for  touch : AnyObject in touches {
+                
+                let touchView : UIView = touch.view
+                if !self.isTouchEdgeHide {
+                    NSLog("触摸了View边缘，但您未开启触摸边缘隐藏方法，请设置 isTouchEdgeHide 属性为 YES 后再使用！")
+                    return
+                }
+                if touchView.isKind(of: self.classForCoder) {
+                    ba_removeSelf_actionSheet()
+                }
             }
         }
     }
@@ -341,6 +357,52 @@ class BAActionSheet: UIView, UITableViewDelegate, UITableViewDataSource {
     @objc private func cancelButtonClickedAction(sender:UIButton){
         ba_removeSelf_actionSheet()
 
+    }
+    
+    // MARK: 进场动画
+    private func showAnimationWithView(animationView : UIView) -> Void {
+        isAnimate = true
+        if animatingStyle == .BAAlertAnimatingStyleScale {
+            animationView.scaleAnimationShowFinishAnimation(finish: {[weak self] () in
+                
+                self?.isAnimate = false
+            })
+        }
+        else if animatingStyle == .BAAlertAnimatingStyleShake {
+            animationView.layer.shakeAnimationWithDuration(duration: 0.35, radius: 16.0, repeatCount: 1.0, finish: { [weak self] () in
+                
+                self?.isAnimate = false
+            })
+        }
+        else if animatingStyle == .BAAlertAnimatingStyleFall {
+            animationView.layer.fallAnimationWithDuration(duration: 0.35, finish: {[weak self] () in
+                
+                self?.isAnimate = false
+            })
+        }
+    }
+    
+    private func dismissAnimationView(animationView : UIView) -> Void {
+        
+        isAnimate = true
+        if animatingStyle == .BAAlertAnimatingStyleScale {
+            animationView.scaleAnimationDismissFinishAnimation(finish: {[weak self] () in
+                self?.isAnimate = false
+                self?.ba_removeSelf_actionSheet()
+            })
+        }
+        else if animatingStyle == .BAAlertAnimatingStyleShake {
+            animationView.layer.floatAnimationWithDuration(duration: 0.35, finish: {[weak self] () in
+                self?.isAnimate = false
+                self?.ba_removeSelf_actionSheet()
+            })
+        }
+        else if animatingStyle == .BAAlertAnimatingStyleFall {
+            animationView.layer.floatAnimationWithDuration(duration: 0.35, finish: {[weak self] () in
+                self?.isAnimate = false
+                self?.ba_removeSelf_actionSheet()
+            })
+        }
     }
     
     // MARK: - setter / getter
@@ -399,7 +461,7 @@ class BAActionSheet: UIView, UITableViewDelegate, UITableViewDataSource {
         
         return actionSheetWindow!
     }()
-}
+    }
 
 
 class BAActionSheetModel: NSObject{

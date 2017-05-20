@@ -139,6 +139,7 @@ extension UIView {
         UIView.animate(withDuration: 0.15, animations: {
             self.transform = CGAffineTransform(scaleX: 1.18, y: 1.18)
         }) { (finished) in
+            
             UIView.animate(withDuration: 0.25, animations: {
                 self.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
                 }, completion: { (finifhed) in
