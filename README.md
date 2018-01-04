@@ -20,7 +20,6 @@
 
 ## 3、安装、导入示例和源码地址
 * 1、pod 导入【最新版本：version ![](https://img.shields.io/cocoapods/v/BAAlert-Swift.svg?style=flat)】： <br>
- `pod 'BAAlert'` <br>
  `pod 'BAAlert-Swift'`  <br>
 如果发现 `pod search BAAlert` 搜索出来的不是最新版本，需要在终端执行 cd 转换文件路径命令退回到 desktop，然后执行 `pod setup` 命令更新本地spec缓存（可能需要几分钟），然后再搜索就可以了。<br>
 具体步骤：
@@ -500,11 +499,16 @@ typedef void (^BAActionSheet_ActionBlock)(NSIndexPath *indexPath, BAActionSheetM
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
  
-最新更新时间：2017-05-20 【倒叙】 <br>
+  
+ 最新更新时间：2018-01-04 【倒叙】 <br>
+ 最新Version：【Version：1.2.0】 <br>
+ 更新内容： <br>
+ 1.2.0.1、适配 swift 4.0  <br>
+ 
+ 最新更新时间：2017-05-20 【倒叙】 <br>
  最新Version：【Version：1.1.9】 <br>
  更新内容： <br>
  1.1.9.1、修复动画过度白屏问题  <br>
-
  
  最新更新时间：2017-05-15 【倒叙】 <br>
  最新Version：【Version：1.1.8】 <br>
@@ -546,23 +550,13 @@ typedef void (^BAActionSheet_ActionBlock)(NSIndexPath *indexPath, BAActionSheetM
  1.1.0.5、新增 BAAlert_OC.h 文件，只需导入 BAAlert_OC.h 一个文件就可以使用 alert 和 actionSheet 了
  1.1.0.6、删除了部分代码和属性，具体见源码 和 demo
 
-<<<<<<< HEAD
-## 6、bug 反馈
-> 1、开发中遇到 bug，希望小伙伴儿们能够及时反馈与我们 [【BAHome】](https://github.com/BAHome) 团队，我们必定会认真对待每一个问题！ <br>
-=======
+
 ## 6、bug 反馈 和 联系方式
 > 1、开发中遇到 bug，希望小伙伴儿们能够及时反馈与我们 BAHome 团队，我们必定会认真对待每一个问题！ <br>
->>>>>>> parent of 8660616... readme
 
 > 2、联系方式 <br> 
 QQ群：479663605  【注意：此群为 2 元 付费群，介意的小伙伴儿勿扰！】<br> 
-博爱QQ：137361770 <br> 
-博爱微博：[![](https://img.shields.io/badge/微博-博爱1616-red.svg)](http://weibo.com/538298123) <br> 
 
-## 7、开发环境 和 支持版本
-> 开发使用 Xcode Version 8.3.2 (8E2002) ，理论上支持所有 iOS 版本，如有版本适配问题，请及时反馈！多谢合作！
-
-<<<<<<< HEAD
 > 孙博岩 <br> 
 QQ：137361770 <br> 
 git：[https://github.com/boai](https://github.com/boai) <br>
@@ -599,11 +593,5 @@ git：[https://github.com/CrazyCoderShi](https://github.com/CrazyCoderShi) <br>
 
 ## 9、感谢
 > 感谢 [【BAHome】](https://github.com/BAHome)  团队成员倾力合作，后期会推出一系列 常用 UI 控件的封装，大家有需求得也可以在 issue 提出，如果合理，我们会尽快推出新版本！<br>
-
-> [【BAHome】](https://github.com/BAHome)  的发展离不开小伙伴儿的信任与推广，再次感谢各位小伙伴儿的支持！
-=======
-## 8、感谢
-> 感谢 BAHome 团队成员倾力合作，后期会推出一系列 常用 UI 控件的封装，大家有需求得也可以在 issue 提出，如果合理，我们会尽快推出新版本！<br>
->>>>>>> parent of 8660616... readme
 
 

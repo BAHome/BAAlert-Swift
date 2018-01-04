@@ -356,14 +356,14 @@ class BAAlert : UIView {
         
         // 图片
         min_y = titleLabel.frame.maxY + kBAAlert_Padding * 2
-        var imageView_size:CGSize = (image?.size)!
+        var imageView_size = image?.size
         if imageView_size != nil {
-            if (imageView_size.width) > _maxContent_Width {
-                imageView_size.height = (imageView_size.height) / (imageView_size.width) * _maxContent_Width
-                imageView_size.width = _maxContent_Width
+            if (imageView_size?.width)! > _maxContent_Width {
+                imageView_size?.height = (imageView_size?.height)! / (imageView_size?.width)! * _maxContent_Width
+                imageView_size?.width = _maxContent_Width
             }
-            min_w = (imageView_size.width) - kBAAlert_Padding * 2
-            min_h = (imageView_size.height)
+            min_w = (imageView_size?.width)! - kBAAlert_Padding * 2
+            min_h = (imageView_size?.height)!
         }
         else
         {

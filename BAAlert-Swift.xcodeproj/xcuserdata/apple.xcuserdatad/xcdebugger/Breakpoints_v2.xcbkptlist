@@ -33,6 +33,38 @@
             endingLineNumber = "35"
             landmarkName = "shakeAnimationWithDuration(duration:radius:repeatCount:finish:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(extension in BAAlert_Swift):__ObjC.CALayer.shakeAnimationWithDuration (duration : Swift.Double, radius : Swift.Double, repeatCount : Swift.Float, finish : Swift.Optional&lt;() -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "BAAlert-Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Documents/github/Mayun/BAAlert-Swift/BAAlert-Swift/BAAlert_Animation.swift"
+                  timestampString = "516693921.596393"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "1758">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(extension in BAAlert_Swift):__ObjC.CALayer.(shakeAnimationWithDuration (duration : Swift.Double, radius : Swift.Double, repeatCount : Swift.Float, finish : Swift.Optional&lt;() -&gt; ()&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "BAAlert-Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Documents/github/Mayun/BAAlert-Swift/BAAlert-Swift/BAAlert_Animation.swift"
+                  timestampString = "516693921.599578"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -68,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BAAlert-Swift/BAAlert-Swift/BAAlert.swift"
-            timestampString = "516953977.481051"
+            timestampString = "516614636.072933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "424"
-            endingLineNumber = "424"
+            startingLineNumber = "412"
+            endingLineNumber = "412"
             landmarkName = "loadButtons()"
             landmarkType = "7">
          </BreakpointContent>
@@ -84,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BAAlert-Swift/BAAlert-Swift/BAAlert.swift"
-            timestampString = "516953977.481051"
+            timestampString = "516614636.072933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "453"
-            endingLineNumber = "453"
+            startingLineNumber = "441"
+            endingLineNumber = "441"
             landmarkName = "addButton(frame:title:tag:titleColor:)"
             landmarkType = "7">
          </BreakpointContent>

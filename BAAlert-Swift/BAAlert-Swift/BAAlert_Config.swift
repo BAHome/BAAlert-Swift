@@ -28,7 +28,7 @@ var kBAAlert_ButtonHeight : CGFloat = 40
 var BAAlert_Color_RGBA : (CGFloat, CGFloat, CGFloat, CGFloat) -> UIColor = {
     return UIColor(red: $0/255.0, green: $1/255.0, blue: $2/255.0, alpha: $3)
 }
-var BAAlert_Color_Translucent = UIColor.init(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.5)
+var BAAlert_Color_Translucent = UIColor.init(colorLiteralRed: 0.3, green: 0.3, blue: 0.3, alpha: 0.5)
 var BAAlert_Color_Line = BAAlert_Color_RGBA(160, 170, 160, 0.5)
 var BAAlert_Color_gray11 = BAAlert_Color_RGBA(248, 248, 248, 1.0)
 var BAAlert_Color_gray7 = BAAlert_Color_RGBA(173, 180, 190, 1.0)
@@ -40,9 +40,9 @@ func BAKit_LabelSizeWithTextAndWidthAndFont(string: String, width : CGFloat, fon
     
     let size = CGSize(width: width, height:CGFloat(CGFloat.greatestFiniteMagnitude))
     
-    let dic = NSDictionary(object: font, forKey: NSAttributedStringKey.font as NSCopying)
+    let dic = NSDictionary(object: font, forKey: NSFontAttributeName as NSCopying)
     
-    let newSize = statusLabelText.boundingRect(with: size, options: [.usesLineFragmentOrigin, .truncatesLastVisibleLine, .usesFontLeading], attributes: dic as? [NSAttributedStringKey : Any], context: nil).size;
+    let newSize = statusLabelText.boundingRect(with: size, options: [.usesLineFragmentOrigin, .truncatesLastVisibleLine, .usesFontLeading], attributes: dic as? [String : Any] , context: nil).size;
     
     return newSize
 }
