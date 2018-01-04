@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+public typealias finishBlock = () -> ()
+
+
 extension CALayer {
     /*!
      *  晃动动画
@@ -18,7 +21,7 @@ extension CALayer {
      *  @param repeatCount   重复次数
      *  @param finish   动画完成
      */
-    func shakeAnimationWithDuration(duration:TimeInterval, radius : Double, repeatCount : Float, finish : (() -> Void)?) {
+    func shakeAnimationWithDuration(duration:TimeInterval, radius : Double, repeatCount : Float, finish : @escaping finishBlock)  {
         let keyAnimation = CAKeyframeAnimation()
         keyAnimation.duration = duration
         keyAnimation.keyPath = "transform.rotation.z"
@@ -33,7 +36,7 @@ extension CALayer {
         if (finish != nil) {
             let delay : Float = Float(duration) * (repeatCount) - 0.1
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(delay)) {
-                finish!()
+                finish()
             }
         }
     }
@@ -46,7 +49,7 @@ extension CALayer {
      *  @param repeat   重复次数
      *  @param finish   动画完成
      */
-    func pathAnimationWithDuration(duration:TimeInterval, path : CGPath, repeatCount : Float, finish : (() -> Void)?) {
+    func pathAnimationWithDuration(duration:TimeInterval, path : CGPath, repeatCount : Float, finish :  @escaping finishBlock)  {
         let keyAnimation = CAKeyframeAnimation()
         keyAnimation.duration = duration
         keyAnimation.keyPath = "position"
@@ -58,14 +61,14 @@ extension CALayer {
         if ((finish) != nil) {
             let delay : Float = Float(duration) * (repeatCount) - 0.1
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(delay)) {
-                finish!()
+                finish()
             }
         }
     }
     
     /*! 这两个动画只适合本项目 */
     /*! 天上掉下 */
-    func fallAnimationWithDuration(duration:TimeInterval, finish : (() -> Void)?) {
+    func fallAnimationWithDuration(duration:TimeInterval, finish :  @escaping finishBlock)  {
         let frame = UIScreen.main.bounds
         
         let center = CGPoint(x: frame.width * 0.5, y: frame.height * 0.5)
@@ -81,13 +84,13 @@ extension CALayer {
         self.pathAnimationWithDuration(duration: duration, path: path.cgPath, repeatCount: 1.0) { () in
             if (finish != nil)
             {
-                finish!()
+                finish()
             }
         }
     }
     
     /*! 上升 */
-    func floatAnimationWithDuration(duration:TimeInterval, finish : (() -> Void)?) {
+    func floatAnimationWithDuration(duration:TimeInterval, finish :  @escaping finishBlock)  {
         let frame = UIScreen.main.bounds
         
         let center = CGPoint(x: frame.width * 0.5, y: frame.height * 0.5)
@@ -103,7 +106,7 @@ extension CALayer {
         self.pathAnimationWithDuration(duration: duration, path: path.cgPath, repeatCount: 1.0) { () in
             if (finish != nil)
             {
-                finish!()
+                finish()
             }
         }
     }
@@ -116,7 +119,7 @@ extension UIView {
      
      - parameter finish: 动画完成
      */
-    func scaleAnimationShowFinishAnimation(finish : (() -> Void)?) {
+    func scaleAnimationShowFinishAnimation(finish : @escaping finishBlock)  {
         transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
         UIView.animate(withDuration: 0.35, animations: { 
             self.transform = CGAffineTransform(scaleX: 1.18, y: 1.18)
@@ -125,7 +128,7 @@ extension UIView {
                     self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                     }, completion: { (finifhed) in
                         if finished {
-                            finish!()
+                            finish()
                         }
                 })
         }
@@ -135,7 +138,7 @@ extension UIView {
      
      - parameter finish:   动画完成
      */
-    func scaleAnimationDismissFinishAnimation(finish : (() -> Void)?) {
+    func scaleAnimationDismissFinishAnimation(finish :  @escaping finishBlock)  {
         UIView.animate(withDuration: 0.15, animations: {
             self.transform = CGAffineTransform(scaleX: 1.18, y: 1.18)
         }) { (finished) in
@@ -144,7 +147,7 @@ extension UIView {
                 self.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
                 }, completion: { (finifhed) in
                     if finished {
-                        finish!()
+                        finish()
                     }
             })
         }

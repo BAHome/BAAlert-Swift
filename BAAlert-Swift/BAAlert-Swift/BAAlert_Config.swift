@@ -36,12 +36,12 @@ var BAAlert_Color_gray7 = BAAlert_Color_RGBA(173, 180, 190, 1.0)
 
 // lable 自适应宽高
 func BAKit_LabelSizeWithTextAndWidthAndFont(string: String, width : CGFloat, font : UIFont) -> CGSize {
-    let statusLabelText: String = string
+    let statusLabelText: NSString = (string as NSString)
     
     let size = CGSize(width: width, height:CGFloat(CGFloat.greatestFiniteMagnitude))
     
     let dic = NSDictionary(object: font, forKey: NSAttributedStringKey.font as NSCopying)
-    
+
     let newSize = statusLabelText.boundingRect(with: size, options: [.usesLineFragmentOrigin, .truncatesLastVisibleLine, .usesFontLeading], attributes: dic as? [NSAttributedStringKey : Any], context: nil).size;
     
     return newSize
