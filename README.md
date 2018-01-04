@@ -546,16 +546,23 @@ typedef void (^BAActionSheet_ActionBlock)(NSIndexPath *indexPath, BAActionSheetM
  1.1.0.5、新增 BAAlert_OC.h 文件，只需导入 BAAlert_OC.h 一个文件就可以使用 alert 和 actionSheet 了
  1.1.0.6、删除了部分代码和属性，具体见源码 和 demo
 
+<<<<<<< HEAD
 ## 6、bug 反馈
 > 1、开发中遇到 bug，希望小伙伴儿们能够及时反馈与我们 [【BAHome】](https://github.com/BAHome) 团队，我们必定会认真对待每一个问题！ <br>
+=======
+## 6、bug 反馈 和 联系方式
+> 1、开发中遇到 bug，希望小伙伴儿们能够及时反馈与我们 BAHome 团队，我们必定会认真对待每一个问题！ <br>
+>>>>>>> parent of 8660616... readme
 
-> 2、以后提需求和 bug 的同学，记得把 git 或者博客链接给我们，我直接超链到你们那里！希望大家积极参与测试！<br> 
+> 2、联系方式 <br> 
+QQ群：479663605  【注意：此群为 2 元 付费群，介意的小伙伴儿勿扰！】<br> 
+博爱QQ：137361770 <br> 
+博爱微博：[![](https://img.shields.io/badge/微博-博爱1616-red.svg)](http://weibo.com/538298123) <br> 
 
-## 7、BAHome 团队成员
-> 1、QQ 群 
-479663605 <br> 
-【注意：此群为 2 元 付费群，介意的小伙伴儿勿扰！】<br> 
+## 7、开发环境 和 支持版本
+> 开发使用 Xcode Version 8.3.2 (8E2002) ，理论上支持所有 iOS 版本，如有版本适配问题，请及时反馈！多谢合作！
 
+<<<<<<< HEAD
 > 孙博岩 <br> 
 QQ：137361770 <br> 
 git：[https://github.com/boai](https://github.com/boai) <br>
@@ -594,6 +601,9 @@ git：[https://github.com/CrazyCoderShi](https://github.com/CrazyCoderShi) <br>
 > 感谢 [【BAHome】](https://github.com/BAHome)  团队成员倾力合作，后期会推出一系列 常用 UI 控件的封装，大家有需求得也可以在 issue 提出，如果合理，我们会尽快推出新版本！<br>
 
 > [【BAHome】](https://github.com/BAHome)  的发展离不开小伙伴儿的信任与推广，再次感谢各位小伙伴儿的支持！
-
+=======
+## 8、感谢
+> 感谢 BAHome 团队成员倾力合作，后期会推出一系列 常用 UI 控件的封装，大家有需求得也可以在 issue 提出，如果合理，我们会尽快推出新版本！<br>
+>>>>>>> parent of 8660616... readme
 
 
