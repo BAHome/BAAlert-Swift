@@ -108,7 +108,7 @@ class BAAlert : UIView {
     private var alertType : BAAlertType?
     
     private var customView = UIView()
-    private var customView_frame = CGRect()
+    private var customView_frame = CGRect.init()
     private var buttonActionBlock : BAAlert_ButtonActionBlock?
 
     private var current_blurEffectStyle : BAAlertBlurEffectStyle = .BAAlertBlurEffectStyleExtraLight {
@@ -348,29 +348,32 @@ class BAAlert : UIView {
         min_w = _maxContent_Width - kBAAlert_Padding * 2
         let titleLabel_size : CGSize = BAKit_LabelSizeWithTextAndWidthAndFont(string: titleLabel.text!, width: min_w, font: titleLabel.font)
         min_h = titleLabel_size.height
-        titleLabel.frame = CGRect(x: min_x, y: min_y, width: min_w, height: min_h)
+        titleLabel.frame = CGRect.init(x: min_x, y: min_y, width: min_w, height: min_h)
 
         min_y = titleLabel.frame.maxY + kBAAlert_Padding
         min_h = 0.5
-        addLine(frame: CGRect(x: min_x, y: min_y, width: min_w, height: min_h), view: scrollView)
+        addLine(frame: CGRect.init(x: min_x, y: min_y, width: min_w, height: min_h), view: scrollView)
         
         // 图片
         min_y = titleLabel.frame.maxY + kBAAlert_Padding * 2
-        var imageView_size = image?.size
+        let imageView_size = image?.size
         if imageView_size != nil {
+            var imageView_size_width:CGFloat = 0
+            var imageView_size_height:CGFloat = 0
+
             if (imageView_size?.width)! > _maxContent_Width {
-                imageView_size?.height = (imageView_size?.height)! / (imageView_size?.width)! * _maxContent_Width
-                imageView_size?.width = _maxContent_Width
+                imageView_size_height = (imageView_size?.height)! / (imageView_size?.width)! * _maxContent_Width
+                imageView_size_width = _maxContent_Width
             }
-            min_w = (imageView_size?.width)! - kBAAlert_Padding * 2
-            min_h = (imageView_size?.height)!
+            min_w = imageView_size_width - kBAAlert_Padding * 2
+            min_h = imageView_size_height
         }
         else
         {
             min_w = 0
             min_h = 0
         }
-        imageView.frame = CGRect(x: min_x, y: min_y, width: min_w, height: min_h)
+        imageView.frame = CGRect.init(x: min_x, y: min_y, width: min_w, height: min_h)
         
         // message
         if min_h <= 0 {
@@ -382,19 +385,19 @@ class BAAlert : UIView {
         min_w = titleLabel.frame.width
         let messageLabel_size : CGSize = BAKit_LabelSizeWithTextAndWidthAndFont(string: messageLabel.text!, width: min_w, font: messageLabel.font)
         min_h = messageLabel_size.height
-        messageLabel.frame = CGRect(x: min_x, y: min_y, width: min_w, height: min_h)
+        messageLabel.frame = CGRect.init(x: min_x, y: min_y, width: min_w, height: min_h)
         _scroll_bottom = messageLabel.frame.maxY + kBAAlert_Padding
         
         min_x = 0
         min_y = 0
         min_w = _maxContent_Width
         min_h = min(max(_scroll_bottom + kBAAlert_Padding * 2 + _button_totalHeight, kBAAlert_Padding * 3), _maxContent_Height)
-        containerView.frame = CGRect(x: min_x, y: min_y, width: min_w, height: min_h)
+        containerView.frame = CGRect.init(x: min_x, y: min_y, width: min_w, height: min_h)
         containerView.center = self.center
         
         min_y = kBAAlert_Padding
         min_h = min(_scroll_bottom, self.containerView.frame.height - kBAAlert_Padding * 2 - _button_totalHeight)
-        scrollView.frame = CGRect(x: min_x, y: min_y, width: min_w, height: min_h)
+        scrollView.frame = CGRect.init(x: min_x, y: min_y, width: min_w, height: min_h)
         scrollView.contentSize = CGSize(width: _maxContent_Width, height: _scroll_bottom)
         
         loadButtons()
@@ -420,25 +423,25 @@ class BAAlert : UIView {
         let buttonWidth = containerView.frame.width
         var top = containerView.frame.height - _button_totalHeight
         
-        addLine(frame: CGRect(x: 0, y: top - 0.5, width: buttonWidth, height: 0.5), view: containerView)
+        addLine(frame: CGRect.init(x: 0, y: top - 0.5, width: buttonWidth, height: 0.5), view: containerView)
         
         if buttonTitleColorArray.count > 0 {
             if buttonTitleArray.count == 1 {
-                addButton(frame: CGRect(x: 0, y: top, width: buttonWidth, height: buttonHeight), title: buttonTitleArray[0], tag: 0, titleColor: buttonTitleColorArray[0])
+                addButton(frame: CGRect.init(x: 0, y: top, width: buttonWidth, height: buttonHeight), title: buttonTitleArray[0], tag: 0, titleColor: buttonTitleColorArray[0])
             }
             else if buttonTitleArray.count == 2 {
                 for i : NSInteger in 0..<buttonTitleArray.count {
-                    addButton(frame: CGRect(x: (buttonWidth/2 * CGFloat(i)), y: top, width: buttonWidth/2, height: buttonHeight), title: buttonTitleArray[i], tag: i, titleColor: buttonTitleColorArray[i])
+                    addButton(frame: CGRect.init(x: (buttonWidth/2 * CGFloat(i)), y: top, width: buttonWidth/2, height: buttonHeight), title: buttonTitleArray[i], tag: i, titleColor: buttonTitleColorArray[i])
                 }
-                addLine(frame: CGRect(x: buttonWidth/2 - 0.5, y: top, width: 0.5, height: buttonWidth), view: containerView)
+                addLine(frame: CGRect.init(x: buttonWidth/2 - 0.5, y: top, width: 0.5, height: buttonWidth), view: containerView)
             }
             else {
                 for i : NSInteger in 0..<buttonTitleArray.count {
-                    addButton(frame: CGRect(x: 0, y: top, width: buttonWidth, height: buttonHeight), title: buttonTitleArray[i], tag: i, titleColor: buttonTitleColorArray[i])
+                    addButton(frame: CGRect.init(x: 0, y: top, width: buttonWidth, height: buttonHeight), title: buttonTitleArray[i], tag: i, titleColor: buttonTitleColorArray[i])
                     top += buttonHeight
                     
                     if (buttonTitleArray.count - 1) != i {
-                        addLine(frame: CGRect(x: 0, y: top, width: buttonWidth, height: 0.5), view: containerView)
+                        addLine(frame: CGRect.init(x: 0, y: top, width: buttonWidth, height: 0.5), view: containerView)
                     }
                     
                 }
@@ -492,7 +495,7 @@ class BAAlert : UIView {
     }
     
     private func imageWithColor(color: UIColor, size: CGSize) -> UIImage {
-        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        let rect = CGRect.init(x: 0, y: 0, width: size.width, height: size.height)
         UIGraphicsBeginImageContext(rect.size)
         
         let context : CGContext = UIGraphicsGetCurrentContext()!
