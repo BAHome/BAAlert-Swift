@@ -46,7 +46,7 @@ extension CALayer {
      *  @param repeat   重复次数
      *  @param finish   动画完成
      */
-    func pathAnimationWithDuration(duration:TimeInterval, path : CGPath, repeatCount : Float, finish : ((Void) -> Void)?) {
+    func pathAnimationWithDuration(duration:TimeInterval, path : CGPath, repeatCount : Float, finish : (() -> Void)?) {
         let keyAnimation = CAKeyframeAnimation()
         keyAnimation.duration = duration
         keyAnimation.keyPath = "position"
@@ -116,7 +116,7 @@ extension UIView {
      
      - parameter finish: 动画完成
      */
-    func scaleAnimationShowFinishAnimation(finish : ((Void) -> Void)?) {
+    func scaleAnimationShowFinishAnimation(finish : (() -> Void)?) {
         transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
         UIView.animate(withDuration: 0.35, animations: { 
             self.transform = CGAffineTransform(scaleX: 1.18, y: 1.18)
@@ -135,7 +135,7 @@ extension UIView {
      
      - parameter finish:   动画完成
      */
-    func scaleAnimationDismissFinishAnimation(finish : ((Void) -> Void)?) {
+    func scaleAnimationDismissFinishAnimation(finish : (() -> Void)?) {
         UIView.animate(withDuration: 0.15, animations: {
             self.transform = CGAffineTransform(scaleX: 1.18, y: 1.18)
         }) { (finished) in

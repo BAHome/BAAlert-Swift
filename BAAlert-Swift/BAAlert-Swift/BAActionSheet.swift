@@ -84,13 +84,11 @@ class BAActionSheet: UIView, UITableViewDelegate, UITableViewDataSource {
         tempView.ba_actionSheetShow()
     }
     
-    
     /*!
      *  隐藏 BAActionSheet
      */
     func ba_actionSheetHidden() -> Void {
         
-
         if showAnimate {
             dismissAnimationView(animationView: tableView)
         }
@@ -98,7 +96,6 @@ class BAActionSheet: UIView, UITableViewDelegate, UITableViewDataSource {
         {
             ba_removeSelf_actionSheet()
         }
-
     }
     
     override init(frame: CGRect) {
@@ -139,7 +136,7 @@ class BAActionSheet: UIView, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell:BAActionSheetCell? = tableView.dequeueReusableCell(withIdentifier: kCellID) as? BAActionSheetCell
+        var cell = tableView.dequeueReusableCell(withIdentifier: kCellID) as? BAActionSheetCell
        
         if cell == nil {
             
@@ -152,9 +149,8 @@ class BAActionSheet: UIView, UITableViewDelegate, UITableViewDataSource {
             
             let subModel:BAActionSheetSubContentModel = model.subContentArray[indexPath.row] 
             cell?.textLabel?.text = subModel.subContent
-            cell?.textLabel?.textColor = UIColor.init(colorLiteralRed: 173 / 255.0, green: 180 / 255.0, blue: 190 / 255.0, alpha: 1)
-            cell?.backgroundColor = UIColor.init(colorLiteralRed: 248 / 255.0, green: 248 / 255.0, blue: 248 / 255.0, alpha: 1)
-
+            cell?.textLabel?.textColor = UIColor.init(red: 173 / 255.0, green: 180 / 255.0, blue: 190 / 255.0, alpha: 1)
+            cell?.backgroundColor = UIColor.init(red: 248 / 255.0, green: 248 / 255.0, blue: 248 / 255.0, alpha: 1)
         }
         else
         {
@@ -169,7 +165,6 @@ class BAActionSheet: UIView, UITableViewDelegate, UITableViewDataSource {
                     selectIndexPath = indexPath as NSIndexPath
                 }
             }
-  
         }
         
         return cell!
@@ -283,7 +278,6 @@ class BAActionSheet: UIView, UITableViewDelegate, UITableViewDataSource {
         actionSheetWindow.frame = UIScreen.main.bounds
         tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
         sutupTableHeight()
-       
     }
     
     private func sutupTableHeight() -> Void {
@@ -318,8 +312,6 @@ class BAActionSheet: UIView, UITableViewDelegate, UITableViewDataSource {
                 tableView.isScrollEnabled = true
             }
         }
-
-        
     }
     
     private func ba_actionSheetShow() -> Void {
@@ -353,10 +345,8 @@ class BAActionSheet: UIView, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    
     @objc private func cancelButtonClickedAction(sender:UIButton){
         ba_removeSelf_actionSheet()
-
     }
     
     // MARK: 进场动画

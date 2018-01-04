@@ -222,7 +222,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     private func alert5_func() -> Void{
         let customView = CustomView()
         customView.frame = CGRect(x: 50, y: 250, width: 250, height: 180)
-        
         customView.buttonActionBlock = {[weak self]
             (index) in
         
@@ -302,8 +301,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             actionSheet.dataArray = dataArray
             actionSheet.actionSheetType = .BAActionSheetTypeNormalCenter
             actionSheet.isShowCancelButton = true
-//            actionSheet.isTouchEdgeHide = true
-//            actionSheet.title = "支付方式"
+            actionSheet.isTouchEdgeHide = true
+            actionSheet.title = "支付方式"
             
             actionSheet.showAnimate = true
             actionSheet.animatingStyle = .BAAlertAnimatingStyleShake
@@ -351,7 +350,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             actionSheet.dataArray = dataArray
             actionSheet.actionSheetType = .BAActionSheetTypeExpand
-//            actionSheet.isShowCancelButton = true
+            actionSheet.isShowCancelButton = true
             actionSheet.isTouchEdgeHide = true
 //            actionSheet.title = "支付方式"
             
@@ -365,7 +364,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
     }
-
 
     private func showWithTitle(_ title:String) -> Void{
         let alertVC:UIAlertController = UIAlertController.init(title: "提醒", message: title, preferredStyle: UIAlertControllerStyle.alert)
