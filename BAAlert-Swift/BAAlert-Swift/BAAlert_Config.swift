@@ -35,16 +35,24 @@ var BAAlert_Color_gray7 = BAAlert_Color_RGBA(173, 180, 190, 1.0)
 
 
 // lable 自适应宽高
-func BAKit_LabelSizeWithTextAndWidthAndFont(string: String, width : CGFloat, font : UIFont) -> CGSize {
-    let statusLabelText: NSString = (string as NSString)
-    
-    let size = CGSize(width: width, height:CGFloat(CGFloat.greatestFiniteMagnitude))
-    
+//func BAKit_LabelSizeWithTextAndWidthAndFont(string: String, width : CGFloat, font : UIFont) -> CGSize {
+//    let statusLabelText: NSString = (string as NSString)
+//
+//    let size = CGSize(width: width, height:CGFloat(CGFloat.greatestFiniteMagnitude))
+//
+//    let dic = NSDictionary(object: font, forKey: NSAttributedStringKey.font as NSCopying)
+//
+//    let newSize = statusLabelText.boundingRect(with: size, options: [.usesLineFragmentOrigin, .truncatesLastVisibleLine, .usesFontLeading], attributes: dic as? [NSAttributedStringKey : Any], context: nil).size;
+//
+//    return newSize
+//}
+func BAKit_LabelSizeWithTextAndWidthAndFont(string:String, width: CGFloat, font : UIFont) -> CGSize{
+    var size = CGRect()
+    let size2 = CGSize(width: width, height: 0)//设置label的最大宽度
     let dic = NSDictionary(object: font, forKey: NSAttributedStringKey.font as NSCopying)
 
-    let newSize = statusLabelText.boundingRect(with: size, options: [.usesLineFragmentOrigin, .truncatesLastVisibleLine, .usesFontLeading], attributes: dic as? [NSAttributedStringKey : Any], context: nil).size;
-    
-    return newSize
+    size = string.boundingRect(with: size2, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: dic as! [NSAttributedStringKey : Any] , context: nil);
+    return size.size
 }
 
 /*! 背景高斯模糊枚举 默认：1 */
